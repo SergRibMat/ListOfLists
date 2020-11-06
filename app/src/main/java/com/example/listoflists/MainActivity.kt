@@ -1,0 +1,32 @@
+package com.example.listoflists
+
+import androidx.appcompat.app.AppCompatActivity
+import android.os.Bundle
+import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.ViewModelProviders
+import com.example.listoflists.databinding.ActivityMainBinding
+
+class MainActivity : AppCompatActivity() {
+
+    private lateinit var viewModel: MainActivityViewModel
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
+
+        var binding: ActivityMainBinding = DataBindingUtil.setContentView(this, R.layout.activity_main)
+
+
+
+        viewModel = ViewModelProviders.of(this).get(MainActivityViewModel::class.java)
+
+        binding.viewModel = viewModel
+
+        binding.carRecyclerView.adapter = CarAdapter()
+
+    }
+
+
+
+}
