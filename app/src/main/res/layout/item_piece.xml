@@ -6,6 +6,15 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         >
 
+    <data>
+        <variable
+                name="piece"
+                type="com.example.listoflists.Piece"/>
+        <variable
+                name="onClickClickListener"
+                type="com.example.listoflists.PieceOnClickListener"/>
+    </data>
+
     <FrameLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -13,11 +22,14 @@
             android:padding="10dp">
 
     <TextView
-            tools:text="PIECE"
+            tools:text="@{piece.name}"
             android:background="@color/colorAccent"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/piece_tv" android:textColor="#070606" android:textSize="36sp"/>
+            android:id="@+id/piece_tv"
+            android:textColor="#070606"
+            android:textSize="36sp"
+            android:onClick="@{() -> onClickClickListener.onClick(piece)}"/>
 
     </FrameLayout>
 </layout>

@@ -8,6 +8,9 @@
         <variable
                 name="car"
                 type="com.example.listoflists.Car"/>
+        <variable
+                name="onClickClickListener"
+                type="com.example.listoflists.CarOnClickListener"/>
     </data>
 <LinearLayout
         android:layout_width="match_parent"
@@ -17,6 +20,7 @@
     <TextView
             android:text="@{car.name}"
             tools:text="TEST"
+            android:onClick="@{() -> onClickClickListener.onClick(car)}"
             android:gravity="center"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -36,6 +40,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="6dp"
+            app:pieceList="@{car.pieces}"
             app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
             tools:itemCount="16"
             android:orientation="horizontal"

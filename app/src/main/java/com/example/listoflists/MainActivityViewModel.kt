@@ -23,7 +23,7 @@ class MainActivityViewModel : ViewModel(){
             carList.add(Car(x, "Car $x"))
         }
         for (x in 0..10){
-            piecesList.add(Piece(num, "Piece"))
+            piecesList.add(Piece(num, "Piece $x"))
             num++
         }
         carList.forEach { car ->

@@ -7,7 +7,8 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.listoflists.databinding.ItemCarBinding
 
-class CarAdapter: ListAdapter<Car, CarAdapter.CarViewHolder>(DiffCallback) {
+class CarAdapter(val onClickClickListener: CarOnClickListener,
+                val pieceAdapter: PieceAdapter): ListAdapter<Car, CarAdapter.CarViewHolder>(DiffCallback) {
 
     companion object DiffCallback : DiffUtil.ItemCallback<Car>() {
         override fun areItemsTheSame(oldItem: Car, newItem: Car): Boolean {
@@ -23,8 +24,10 @@ class CarAdapter: ListAdapter<Car, CarAdapter.CarViewHolder>(DiffCallback) {
 
     class CarViewHolder(private var binding: ItemCarBinding):
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(car: Car) {
+        fun bind(car: Car, onClickClickListener: CarOnClickListener, pieceAdapter: PieceAdapter) {
             binding.car = car
+            binding.onClickClickListener = onClickClickListener
+            binding.pieceRecyclerView.adapter = pieceAdapter
             binding.executePendingBindings()
         }
     }
@@ -36,6 +39,6 @@ class CarAdapter: ListAdapter<Car, CarAdapter.CarViewHolder>(DiffCallback) {
 
     override fun onBindViewHolder(holder: CarAdapter.CarViewHolder, position: Int) {
         val car = getItem(position)
-        holder.bind(car)
+        holder.bind(car, onClickClickListener, pieceAdapter)
     }
 }
